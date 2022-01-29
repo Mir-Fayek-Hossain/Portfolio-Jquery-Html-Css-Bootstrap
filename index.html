@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fayek</title>
+    <link rel="icon" href="Pic/pc/f-icon.gif" type="image/gif">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.0/dist/aos.css">
+    <script src="https://unpkg.com/aos@2.3.0/dist/aos.js"></script>
+    <link rel="stylesheet" href="t2.css">
+    <script src="t2.js"></script>
+
+</head>
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans);
+    .loader-wrapper {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #242f3f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgb(5, 5, 5);
+        z-index: 9999;
+    }
+    
+    .loading-text {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+        width: 100%;
+        height: 100px;
+        line-height: 100px;
+    }
+    
+    .loading-text span {
+        display: inline-block;
+        margin: 0 5px;
+        color: #fff;
+        font-family: 'Quattrocento Sans', sans-serif;
+    }
+    
+    .loading-text span:nth-child(1) {
+        filter: blur(0px);
+        animation: blur-text 1.5s 0s infinite linear alternate;
+    }
+    
+    .loading-text span:nth-child(2) {
+        filter: blur(0px);
+        animation: blur-text 1.5s 0.2s infinite linear alternate;
+    }
+    
+    .loading-text span:nth-child(3) {
+        filter: blur(0px);
+        animation: blur-text 1.5s 0.4s infinite linear alternate;
+    }
+    
+    .loading-text span:nth-child(4) {
+        filter: blur(0px);
+        animation: blur-text 1.5s 0.6s infinite linear alternate;
+    }
+    
+    .loading-text span:nth-child(5) {
+        filter: blur(0px);
+        animation: blur-text 1.5s 0.8s infinite linear alternate;
+    }
+    
+    .loading-text span:nth-child(6) {
+        filter: blur(0px);
+        animation: blur-text 1.5s 1s infinite linear alternate;
+    }
+    
+    .loading-text span:nth-child(7) {
+        filter: blur(0px);
+        animation: blur-text 1.5s 1.2s infinite linear alternate;
+    }
+    
+    @keyframes blur-text {
+        0% {
+            filter: blur(0px);
+        }
+        100% {
+            filter: blur(4px);
+        }
+    }
+    
+    @font-face {
+        font-family: 'VCR';
+        src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/225473/VCR_OSD_MONO_1.001.ttf');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    body {
+        font-family: 'VCR', monospace;
+        margin: 0;
+        background-color: #4b4b4b;
+    }
+    
+    .mb_parallax_container1 {
+        height: 90vh;
+        width: 98.76vw;
+        border-bottom: 10px solid rgb(10, 10, 10);
+        padding-top: 10vh;
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    #mb_parallax_one {
+        background-image: url("Pic/pc/b1.jpg");
+    }
+    
+    .media {
+        width: 1.2em;
+        position: absolute;
+        opacity: 0.7;
+        transition: 0.5s;
+    }
+    
+    .f {
+        opacity: 0.7;
+        right: 2em;
+    }
+    
+    .i {
+        opacity: 0.7;
+        right: 4em;
+    }
+    
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:100');
+    .glit,
+    h3 {
+        padding: 0;
+        font-family: 'VCR', monospace;
+    }
+    
+    #wrapper {
+        text-align: center;
+    }
+    /* Our mixin positions a copy of our text directly on our existing text, while also setting content to the appropriate text set in the data-text attribute. */
+    
+    .glitch {
+        margin-top: 37%;
+        position: relative;
+        color: white;
+        font-size: 3em;
+        letter-spacing: 0.5em;
+        /* Animation provies a slight random skew. Check bottom of doc for more information on how to random skew. */
+        animation: glitch-skew 1s infinite linear alternate-reverse;
+    }
+    
+    .glitch::before {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        left: 2px;
+        text-shadow: -2px 0 #ff00c1;
+        /* Creates an initial clip for our glitch. This works in a typical top,right,bottom,left fashion and creates a mask to only show a certain part of the glitch at a time. */
+        clip: rect(44px, 450px, 56px, 0);
+        /* Runs our glitch-anim defined below to run in a 5s loop, infinitely, with an alternating animation to keep things fresh. */
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+    
+    .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        left: -2px;
+        text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+        animation: glitch-anim2 1s infinite linear alternate-reverse;
+    }
+    /* Creates an animation with 20 steaps. For each step, it calculates a percentage for the specific step. It then generates a random clip box to be used for the random glitch effect. Also adds a very subtle skew to change the 'thickness' of the glitch.*/
+    
+    @keyframes glitch-anim {
+        0% {
+            clip: rect(28px, 9999px, 66px, 0);
+            transform: skew(0.59deg);
+        }
+        5% {
+            clip: rect(91px, 9999px, 18px, 0);
+            transform: skew(0.29deg);
+        }
+        10% {
+            clip: rect(15px, 9999px, 98px, 0);
+            transform: skew(0.23deg);
+        }
+        15% {
+            clip: rect(78px, 9999px, 21px, 0);
+            transform: skew(0.76deg);
+        }
+        20% {
+            clip: rect(46px, 9999px, 52px, 0);
+            transform: skew(0.98deg);
+        }
+        25% {
+            clip: rect(86px, 9999px, 90px, 0);
+            transform: skew(0.34deg);
+        }
+        30% {
+            clip: rect(74px, 9999px, 13px, 0);
+            transform: skew(0.58deg);
+        }
+        35% {
+            clip: rect(20px, 9999px, 62px, 0);
+            transform: skew(0.9deg);
+        }
+        40% {
+            clip: rect(57px, 9999px, 51px, 0);
+            transform: skew(0.51deg);
+        }
+        45% {
+            clip: rect(16px, 9999px, 32px, 0);
+            transform: skew(0.53deg);
+        }
+        50% {
+            clip: rect(95px, 9999px, 85px, 0);
+            transform: skew(0.74deg);
+        }
+        55% {
+            clip: rect(73px, 9999px, 95px, 0);
+            transform: skew(0.11deg);
+        }
+        60% {
+            clip: rect(44px, 9999px, 8px, 0);
+            transform: skew(0.45deg);
+        }
+        65% {
+            clip: rect(25px, 9999px, 87px, 0);
+            transform: skew(0.29deg);
+        }
+        70% {
+            clip: rect(16px, 9999px, 93px, 0);
+            transform: skew(0.61deg);
+        }
+        75% {
+            clip: rect(8px, 9999px, 54px, 0);
+            transform: skew(0.99deg);
+        }
+        80% {
+            clip: rect(42px, 9999px, 23px, 0);
+            transform: skew(1deg);
+        }
+        85% {
+            clip: rect(85px, 9999px, 30px, 0);
+            transform: skew(0.09deg);
+        }
+        90% {
+            clip: rect(66px, 9999px, 20px, 0);
+            transform: skew(0.59deg);
+        }
+        95% {
+            clip: rect(78px, 9999px, 46px, 0);
+            transform: skew(0.25deg);
+        }
+        100% {
+            clip: rect(78px, 9999px, 43px, 0);
+            transform: skew(0.25deg);
+        }
+    }
+    
+    .glitch-wrapper {
+        display: inline;
+        place-items: center;
+        padding-top: 180px;
+        text-align: center;
+        animation: glitch 2s linear infinite;
+    }
+    
+    .glitch-text::before {
+        width: 100%;
+        content: 'HELLO';
+        color: rgb(153, 112, 112);
+        text-shadow: 0px 0px 5px 10px black!IMPORTANT;
+        -webkit-filter: blur(7px);
+        -moz-filter: blur(7px);
+        -o-filter: blur(7x);
+        -ms-filter: blur(7px);
+        filter: blur(5px);
+        display: block;
+        position: absolute;
+        z-index: -1;
+        font-size: 13vw;
+        margin-top: -30px;
+        opacity: .8;
+    }
+    
+    .glitch-text1::before {
+        display: none;
+    }
+    
+    .glitch-text {
+        margin-top: -30%;
+        position: relative;
+        z-index: 2;
+        opacity: .9;
+        text-shadow: 0px 0px 3px rgb(255, 255, 255);
+        animation: glitch 4s infinite;
+        cursor: pointer;
+        font-size: 4vw;
+        font-family: "VCR", monospace;
+        color: rgb(219, 219, 219);
+    }
+    /* JUST RANDOM VALUES HERE! */
+    
+    @keyframes glitch {
+        3% {
+            text-shadow: 7px 7px 0px red;
+        }
+        6% {
+            text-shadow: -9px 4px 0px blue;
+            transform: translate(4px, -10px) skewX(40deg);
+        }
+        7% {
+            text-shadow: 3px -4px 0px rgb(45, 209, 45);
+        }
+        9% {
+            text-shadow: 0px 0px 3px white;
+            transform: translate(0px, 0px) skewX(0deg);
+        }
+        2%,
+        54% {
+            transform: translateX(0px) skew(0deg);
+        }
+        55% {
+            transform: translate(-2px, 6px) skew(-50deg);
+        }
+        56% {
+            text-shadow: 0px 0px 3px white;
+            transform: translate(0px, 0px) skew(0deg);
+        }
+        57% {
+            text-shadow: 7px 7px 0px red;
+            transform: translate(4px, -10px) skew(-7deg);
+        }
+        58% {
+            text-shadow: 0px 0px 3px white;
+            transform: translate(0px, 0px) skew(0deg);
+        }
+        62% {
+            text-shadow: 3px -4px 0px green;
+            transform: translate(0px, 20px) skew(0deg);
+        }
+        63% {
+            text-shadow: 0px 0px 3px white;
+            transform: translate(4px, -2px) skew(0deg);
+        }
+        64% {
+            transform: translate(1px, 3px);
+            skew(-230deg);
+        }
+        65% {
+            transform: translate(-7px, 2px);
+            skew(120deg);
+        }
+        66% {
+            transform: translate(0px, 0px) skew(0deg);
+        }
+    }
+    
+    @keyframes glitch-anim2 {
+        0% {
+            clip: rect(80px, 9999px, 46px, 0);
+            transform: skew(0.15deg);
+        }
+        5% {
+            clip: rect(2px, 9999px, 43px, 0);
+            transform: skew(0.05deg);
+        }
+        10% {
+            clip: rect(88px, 9999px, 2px, 0);
+            transform: skew(0.14deg);
+        }
+        15% {
+            clip: rect(90px, 9999px, 8px, 0);
+            transform: skew(0.36deg);
+        }
+        20% {
+            clip: rect(70px, 9999px, 91px, 0);
+            transform: skew(0.33deg);
+        }
+        25% {
+            clip: rect(13px, 9999px, 89px, 0);
+            transform: skew(0.35deg);
+        }
+        30% {
+            clip: rect(56px, 9999px, 45px, 0);
+            transform: skew(0.57deg);
+        }
+        35% {
+            clip: rect(70px, 9999px, 95px, 0);
+            transform: skew(0.18deg);
+        }
+        40% {
+            clip: rect(1px, 9999px, 89px, 0);
+            transform: skew(0.68deg);
+        }
+        45% {
+            clip: rect(68px, 9999px, 39px, 0);
+            transform: skew(0.25deg);
+        }
+        50% {
+            clip: rect(46px, 9999px, 35px, 0);
+            transform: skew(0.75deg);
+        }
+        55% {
+            clip: rect(29px, 9999px, 91px, 0);
+            transform: skew(0.54deg);
+        }
+        60% {
+            clip: rect(36px, 9999px, 95px, 0);
+            transform: skew(0.96deg);
+        }
+        65% {
+            clip: rect(53px, 9999px, 45px, 0);
+            transform: skew(0.92deg);
+        }
+        70% {
+            clip: rect(39px, 9999px, 84px, 0);
+            transform: skew(0.07deg);
+        }
+        75% {
+            clip: rect(11px, 9999px, 82px, 0);
+            transform: skew(0.65deg);
+        }
+        80% {
+            clip: rect(72px, 9999px, 13px, 0);
+            transform: skew(0.76deg);
+        }
+        85% {
+            clip: rect(35px, 9999px, 56px, 0);
+            transform: skew(0.59deg);
+        }
+        90% {
+            clip: rect(8px, 9999px, 73px, 0);
+            transform: skew(0.66deg);
+        }
+        95% {
+            clip: rect(6px, 9999px, 93px, 0);
+            transform: skew(0.78deg);
+        }
+        100% {
+            clip: rect(11px, 9999px, 98px, 0);
+            transform: skew(0.06deg);
+        }
+    }
+    
+    @keyframes glitch-skew {
+        0% {
+            transform: skew(2deg);
+        }
+        10% {
+            transform: skew(-3deg);
+        }
+        20% {
+            transform: skew(1deg);
+        }
+        30% {
+            transform: skew(2deg);
+        }
+        40% {
+            transform: skew(5deg);
+        }
+        50% {
+            transform: skew(2deg);
+        }
+        60% {
+            transform: skew(2deg);
+        }
+        70% {
+            transform: skew(-2deg);
+        }
+        80% {
+            transform: skew(-4deg);
+        }
+        90% {
+            transform: skew(5deg);
+        }
+        100% {
+            transform: skew(5deg);
+        }
+    }
+    
+    .press {
+        display: grid;
+        place-items: center;
+        color: rgb(255, 255, 255);
+        top: 70%;
+        padding: 2px;
+        font-family: 'Courier New', Courier, monospace;
+        animation-name: pre;
+        animation-duration: 1.3s;
+        animation-iteration-count: infinite;
+        transition: 0.7s;
+        animation-delay: 2s;
+        font-size: 15px;
+        z-index: 1;
+    }
+    
+    .press a {
+        width: 90px;
+        text-align: center;
+    }
+    
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    
+    .press:hover {
+        opacity: 1;
+        animation-name: none;
+        text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff, 0 0 20px #ffffff;
+    }
+    
+    @keyframes pre {
+        0% {
+            opacity: 0.2;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0.2;
+        }
+    }
+    
+    #hid {
+        margin: 0;
+        padding: 0;
+        display: none;
+    }
+    
+    .fs {
+        width: 45%;
+        color: rgb(253, 253, 253);
+        font-size: 1.5em;
+        border-radius: 15%;
+        transition: 0.5s;
+    }
+    
+    .media:hover {
+        opacity: 1;
+    }
+    
+    .mb_parallax_container {
+        height: 80vh;
+        width: 98.76vw;
+        border-bottom: 10px solid rgb(10, 10, 10);
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: grid;
+        place-items: center;
+    }
+    
+    .mb_parallax1 {
+        margin-top: 20%;
+        background: url("Pic/pc/b3.jpg");
+        background-position: center top;
+        background-size: cover;
+        width: 40vw;
+        height: 40vh;
+        min-width: 320px;
+        min-height: 400px;
+    }
+    
+    #mb_parallax_two {
+        background-image: url("Pic/pc/b2.jpg");
+        background-position: bottom;
+        background-size: cover;
+    }
+    
+    .bnw {
+        filter: grayscale(100%);
+    }
+    
+    .con_flex {
+        display: grid;
+        place-items: center;
+    }
+    
+    .flex {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: -5%;
+    }
+    
+    .item {
+        margin-top: 177px;
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 100%;
+    }
+    
+    .itemp {
+        height: 60px;
+        margin: 5%;
+        width: 25%;
+        color: rgb(201, 201, 201);
+        font-size: 1.5vw;
+    }
+    
+    .double {
+        height: 200px;
+        width: 60%;
+        margin-top: 0;
+        margin-bottom: 30px;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+    
+    .d1 {
+        background-image: url("Pic/pc/d1.jpg");
+        background-position: 30%;
+        background-size: 200px 200px;
+    }
+    
+    .d3 {
+        background-image: url("Pic/pc/d3.jpg");
+    }
+    
+    .d2 {
+        background-image: url("Pic/pc/d2.jpg");
+        background-position: 70%;
+        background-size: 200px 200px;
+    }
+    
+    h1,
+    h2 {
+        color: white;
+        text-align: center;
+    }
+    
+    .mb_parallax {
+        height: 40vh;
+        width: 60vw;
+        margin-top: 10%;
+        margin-left: 20%;
+        background-color: red;
+    }
+    
+    .mb_parallax3 {
+        letter-spacing: 6px;
+        font-size: 2em;
+    }
+    
+    .mb_parallax_overlay1 {
+        margin-top: 3%;
+        padding-top: 4%;
+        display: grid;
+        place-items: center;
+        background: url("Pic/pc/b1.jpg");
+        background-size: cover;
+        background-position: center top;
+        width: 60vw;
+        height: 65vh;
+        margin: auto;
+        opacity: 1;
+    }
+    
+    #mb_parallax_three {
+        background-image: url("Pic/photo/4.jpg");
+        background-position: center;
+        display: grid;
+        place-items: center;
+        height: 100vh;
+    }
+    
+    .four {
+        background-image: url("Pic/pc/contact.jpg");
+        height: 90vh;
+        width: 98.76vw;
+        border-bottom: 10px solid rgb(10, 10, 10);
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: grid;
+        place-items: center;
+    }
+    
+    .mor {
+        margin-top: 0%;
+    }
+    
+    .screen {
+        margin-top: 140%;
+        display: grid;
+        place-items: center;
+        background-image: url("Pic/pc/90.jpg");
+        height: 100vh;
+        position: absolute;
+        width: 100%;
+        background-position: bottom center;
+        background-size: cover;
+        font-size: 1vw;
+    }
+    
+    .d {
+        margin: 5%;
+        background: url("Pic/pc/b4.jpg");
+        float: left;
+        background-position: center;
+        background-size: cover;
+        width: 400px;
+        height: 400px;
+    }
+    
+    .c {
+        color: rgb(201, 201, 201);
+        margin: 5%;
+        font-family: "VCR", monospace;
+        margin-top: 10%;
+        width: 40%;
+        font-size: 15px;
+    }
+    
+    .mb_parallax4 {
+        text-align: center;
+        margin-top: 45%;
+    }
+    
+    .contact {
+        margin: 0;
+        width: 97vw;
+        height: 110vh;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .mb_parallax1 {
+            margin-top: 115%;
+        }
+        #more {
+            height: 10vh;
+        }
+        .c {
+            width: 100%;
+        }
+        .mb_parallax4 {
+            margin-top: 5%;
+        }
+        .fs {
+            width: 60%;
+            text-align: left;
+        }
+        .itemp {
+            margin: 7%;
+            font-size: 3vw;
+        }
+    }
+</style>
+
+<body id="bod">
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                xfbml: true,
+                version: 'v8.0'
+            });
+        };
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- Your Chat Plugin code -->
+    <div class="fb-customerchat" attribution=setup_tool page_id="159495984622071" theme_color="#8B8B8B" logged_in_greeting="Hey! What's up?" logged_out_greeting="Hey! What's up?">
+    </div>
+    <div class="loader-wrapper">
+        <div class="loading">
+            <div class="loading-text">
+                <span class="loading-text-words">L</span>
+                <span class="loading-text-words">O</span>
+                <span class="loading-text-words">A</span>
+                <span class="loading-text-words">D</span>
+                <span class="loading-text-words">I</span>
+                <span class="loading-text-words">N</span>
+                <span class="loading-text-words">G</span>
+            </div>
+        </div>
+    </div>
+    <div class="mb_parallax_container1 " id="mb_parallax_one" data-aos="zoom-in">
+        <a href="https://www.instagram.com/im.not.faek/"><img class="media f" src="Pic/pc/ig.png"></a>
+        <a href="https://www.facebook.com/fayek.hossain.5/"><img class="media i" src="Pic/pc/fb.png"></a>
+        <div class="mb_parallax_overlay1">
+            <div class="glitch-wrapper">
+                <div class="glitch-text">MIR FAYEK HOSSSAIN
+                </div>
+            </div>
+            <div class="press">
+                <a href="#" id="myBtn" onclick="tap();backm()">
+                    <h4>Press me!</h1>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="hid">
+        <div class="mb_parallax_container bnw" data-aos="zoom-in" id="mb_parallax_two">
+            <div class="mb_parallax1" data-aos="fade-up"></div>
+        </div>
+        <div class="con_flex">
+            <div class="flex">
+                <div class="item">
+                    <div class="glit">
+                        <div id="wrapper">
+                            <h3 class="glitch" data-text="_aND0Ms">RANDOMS</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class=" double d1" data-aos="slide-up"></div>
+                <div class="itemp" data-aos="slide-up">
+                    <p>𝚆𝚎 𝚋𝚘𝚝𝚑 𝚔𝚗𝚎𝚠 𝚝𝚑𝚊𝚝 𝚒𝚝 𝚠𝚊𝚜𝚗'𝚝 𝚏𝚊𝚜𝚑𝚒𝚘𝚗𝚊𝚋𝚕𝚎 𝚝𝚘 𝚕𝚘𝚟𝚎 𝚖𝚎...
+                    </p>
+                </div>
+                <div class="itemp" style="text-align: right;" data-aos="slide-up">
+                    <p>𝙸 𝚠𝚛𝚘𝚝𝚎 𝚙𝚘𝚎𝚖𝚜 𝚊𝚋𝚘𝚞𝚝 𝚢𝚘𝚞.....</p>
+                </div>
+                <div class=" double d2 bnw" data-aos="slide-up"></div>
+                <div class=" double d1 d3 bnw" data-aos="slide-up"></div>
+                <div class="itemp" data-aos="slide-up">
+                    <p>𝚄𝚗𝚝𝚒𝚕𝚕 𝚝𝚑𝚎 𝚏𝚕𝚘𝚠𝚎𝚛 𝚘𝚏 𝚝𝚑𝚒𝚜 𝚕𝚘𝚟𝚎 𝚑𝚊𝚜 𝚋𝚕𝚘𝚜𝚜𝚘𝚖𝚎𝚍 𝚝𝚑𝚎 𝚑𝚎𝚊𝚛𝚝 𝚠𝚘𝚗'𝚝 𝚋𝚎 𝚊𝚝 𝚙𝚎𝚊𝚌𝚎....</p>
+                </div>
+            </div>
+        </div>
+        <div class="item" style="margin-top: -50px;">
+            <div class="glit">
+                <div id="wrapper">
+                    <h3 class="glitch" data-text="Abo_t">ABOUT</h3>
+                </div>
+            </div>
+        </div>
+        <div class="flex">
+            <div class="d" data-aos="flip-right">
+            </div>
+            <div class="c" data-aos="flip-left">
+                <p>I'm from Dhaka Bangladesh. Here to spread love and inspire people by my work. <br><br> I,m a Programmer, Photographer,Artist & Content Director. <br><br>Professionally i,m a Software engineer. Here you can see my photos which are captured
+                    by my given directions and arts that are drawn by me.Now im doing BSc in CSE.</p>
+            </div>
+        </div>
+        <div class="mb_parallax_container" id="mb_parallax_three" data-aos="zoom-in">
+            <div class="mb_parallax3" data-aos="slide-up">
+                <div class="glitch-text glitch-text1">ֆ𝔞𝔪𝔲𝔯𝔞𝔦
+                </div>
+            </div>
+        </div>
+        <div id="more" style="height: 100%;width: 90% ;">
+            <div class="screen " data-aos="zoom-in">
+                <div class="mb_parallax4" style="margin-left: 6%;margin-right: 6%;" data-aos="slide-up">
+                    <div class="glitch-text glitch-text1">𝘓𝘦𝘵'𝘴 𝘨𝘦𝘵 𝘣𝘢𝘤𝘬 𝘵𝘰 𝘵𝘩𝘦 90'𝘴 , 𝘵𝘩𝘪𝘴 𝘥𝘦𝘤𝘢𝘥𝘦 𝘴𝘦𝘦𝘮𝘴 𝘢𝘭𝘳𝘦𝘢𝘥𝘺 𝘰𝘶𝘵 𝘰𝘧 𝘩𝘢𝘯𝘥...
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="background: transparent;">
+            <div class="item" style="margin-top: -50px;">
+                <div class="glit">
+                    <div id="wrapper">
+                        <h3 class="glitch" data-text="_Vl_eRy">GALLERY</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <img src=" Pic/photo/1.jpg" onclick="openLightbox();tap();toSlide(1)" style="width:100%" data-aos="flip-right" class="hover-shadow preview">
+                    <img src=" Pic/photo/2.jpg" onclick="openLightbox();tap();toSlide(2)" style="width:100%" data-aos="flip-down" class="hover-shadow preview">
+                    <img src=" Pic/photo/3.jpg" onclick="openLightbox();tap();toSlide(3)" style="width:100%" data-aos="flip-up" class="hover-shadow preview">
+                    <img src=" Pic/photo/4.jpg" onclick="openLightbox();tap();toSlide(4)" style="width:100%" data-aos="flip-left" class="hover-shadow preview">
+                    <img src=" Pic/photo/5.jpg" onclick="openLightbox();tap();toSlide(5)" style="width:100%" data-aos="flip-left" class="hover-shadow preview">
+                    <img src=" Pic/photo/6.jpg" onclick="openLightbox();tap();toSlide(6)" style="width:100%" data-aos="flip-up" class="hover-shadow preview">
+                </div>
+                <div class="column">
+                    <img src=" Pic/photo/7.jpg" onclick="openLightbox();tap();toSlide(7)" style="width:100%" data-aos="flip-down" class="hover-shadow preview">
+                    <img src=" Pic/photo/8.jpg" onclick="openLightbox();tap();toSlide(8)" style="width:100%" data-aos="flip-right" class="hover-shadow preview">
+                    <img src=" Pic/photo/9.jpg" onclick="openLightbox();tap();toSlide(9)" style="width:100%" data-aos="flip-up" class="hover-shadow preview">
+                    <img src=" Pic/photo/10.jpg" onclick="openLightbox();tap();toSlide(10)" style="width:100%" data-aos="flip-left" class="hover-shadow preview">
+                    <img src=" Pic/photo/11.jpg" onclick="openLightbox();tap();toSlide(11)" style="width:100%" data-aos="flip-down" class="hover-shadow preview">
+                    <img src=" Pic/photo/12.jpg" onclick="openLightbox();tap();toSlide(12)" style="width:100%" data-aos="flip-right" class="hover-shadow preview">
+                    <img src=" Pic/photo/13.jpg" onclick="openLightbox();tap();toSlide(13)" style="width:100%" data-aos="flip-up" class="hover-shadow preview">
+                </div>
+                <div class="column">
+                    <img src=" Pic/photo/14.jpg" onclick="openLightbox();tap();toSlide(14)" style="width:100%" data-aos="flip-left" class="hover-shadow preview">
+                    <img src=" Pic/photo/15.jpg" onclick="openLightbox();tap();toSlide(15)" style="width:100%" data-aos="flip-right" class="hover-shadow preview">
+                    <img src=" Pic/photo/16.jpg" onclick="openLightbox();tap();toSlide(16)" style="width:100%" data-aos="flip-down" class="hover-shadow preview">
+                    <img src=" Pic/photo/17.jpg" onclick="openLightbox();tap();toSlide(17)" style="width:100%" data-aos="flip-right" class="hover-shadow preview">
+                    <img src=" Pic/photo/18.jpg" onclick="openLightbox();tap();toSlide(18)" style="width:100%" data-aos="flip-down" class="hover-shadow preview">
+                    <img src=" Pic/photo/19.jpg" onclick="openLightbox();tap();toSlide(19)" style="width:100%" data-aos="flip-left" class="hover-shadow preview">
+                    <img src=" Pic/photo/20.jpg" onclick="openLightbox();tap();toSlide(20)" style="width:100%" data-aos="flip-up" class="hover-shadow preview">
+                </div>
+                <div class="column">
+                    <img src=" Pic/photo/21.jpg" onclick="openLightbox();tap();toSlide(21)" style="width:100%" data-aos="flip-down" class="hover-shadow preview">
+                    <img src=" Pic/photo/22.jpg" onclick="openLightbox();tap();toSlide(22)" style="width:100%" data-aos="flip-right" class="hover-shadow preview">
+                    <img src=" Pic/photo/23.jpg" onclick="openLightbox();tap();toSlide(23)" style="width:100%" data-aos="flip-down" class="hover-shadow preview">
+                    <img src=" Pic/photo/24.jpg" onclick="openLightbox();tap();toSlide(24)" style="width:100%" data-aos="flip-up" class="hover-shadow preview">
+                    <img src=" Pic/photo/25.jpg" onclick="openLightbox();tap();toSlide(25)" style="width:100%" data-aos="flip-up" class="hover-shadow preview">
+                    <img src=" Pic/photo/26.jpg" onclick="openLightbox();tap();toSlide(26)" style="width:100%" data-aos="flip-right" class="hover-shadow preview">
+                </div>
+                <div class="column">
+                    <img src=" Pic/photo/27.jpg" onclick="openLightbox();tap();toSlide(27)" style="width:100%" data-aos="flip-down" class="hover-shadow preview">
+                    <img src=" Pic/photo/28.jpg" onclick="openLightbox();tap();toSlide(28)" style="width:100%" data-aos="flip-right" class="hover-shadow preview">
+                    <img src=" Pic/photo/29.jpg" onclick="openLightbox();tap();toSlide(29)" style="width:100%" data-aos="flip-right" class="hover-shadow preview">
+                    <img src=" Pic/photo/30.jpg" onclick="openLightbox();tap();toSlide(30)" style="width:100%" data-aos="flip-down" class="hover-shadow preview">
+                    <img src=" Pic/photo/31.jpg" onclick="openLightbox();tap();toSlide(31)" style="width:100%" data-aos="flip-left" class="hover-shadow preview">
+                    <img src=" Pic/photo/32.jpg" onclick="openLightbox();tap();toSlide(32)" style="width:100%" data-aos="flip-right" class="hover-shadow preview">
+                </div>
+            </div>
+            <div id="Lightbox" class="modal">
+                <span class="close pointer" onclick="closeLightbox()">&times;</span>
+                <div class="modal-content">
+                    <div class="slide">
+                        <img src="Pic/photo/1.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/2.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/3.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/4.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/5.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/6.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/7.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/8.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/9.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/10.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/11.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/12.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/13.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/14.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/15.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/16.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/17.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/18.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/19.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/20.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/21.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/22.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/23.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/24.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/25.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/26.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/27.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/28.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/29.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/30.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/31.jpg" class="image-slide" />
+                    </div>
+                    <div class="slide">
+                        <img src="Pic/photo/32.jpg" class="image-slide" />
+                    </div>
+                    <a class="previous" onclick="changeSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+                </div>
+            </div>
+        </div>
+        <div class="artwork">
+            <div class="cube-container" data-aos="flip-up">
+                <div class="item" style="margin-top: -50px;margin-bottom: 10%;">
+                    <div class="glit">
+                        <div id="wrapper">
+                            <h3 class="glitch" data-text="_Rtw0Rk">ARTWORK</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="cube initial-position">
+                    <img class="cube-face-image image-1" src="Pic/artwork/1.jpg">
+                    <img class="cube-face-image image-2" src="Pic/artwork/2.jpg">
+                    <img class="cube-face-image image-3" src="Pic/artwork/3.jpg">
+                    <img class="cube-face-image image-4" src="Pic/artwork/4.jpg">
+                    <img class="cube-face-image image-5" src="Pic/artwork/5.jpg">
+                    <img class="cube-face-image image-6" src="Pic/artwork/6.jpg">
+                </div>
+
+            </div>
+            <div class="select-container" data-aos="flip-down">
+                <h2>Click the images below</h2>
+                <div class="image-buttons">
+                    <input onclick="art()" type="image" class="show-image-1" src="Pic/artwork/1.jpg"></input>
+                    <input onclick="art()" type="image" class="show-image-2" src="Pic/artwork/2.jpg"></input>
+                    <input onclick="art()" type="image" class="show-image-3" src="Pic/artwork/3.jpg"></input>
+                    <input onclick="art()" type="image" class="show-image-4" src="Pic/artwork/4.jpg"></input>
+                    <input onclick="art()" type="image" class="show-image-5" src="Pic/artwork/5.jpg"></input>
+                    <input onclick="art()" type="image" class="show-image-6" src="Pic/artwork/6.jpg"></input>
+                </div>
+            </div>
+        </div>
+        <div class=" four" data-aos="zoom-in">
+            <div class="mb_parallax4">
+                <div class="glitch-text glitch-text1" style="color: rgb(19, 18, 18);">𝕭𝖊𝖘𝖙 𝖙𝖍𝖎𝖓𝖌 𝖎 𝖉𝖎𝖉 𝖜𝖆𝖘 𝖑𝖊𝖆𝖗𝖓 𝖙𝖔 𝖛𝖎𝖇𝖊 𝖒𝖞𝖘𝖊𝖑𝖋.
+                </div>
+            </div>
+        </div>
+        <div class="contact">
+            <div class="item" style="margin-top: -50px;margin-bottom: 10%;" data-aos="slide-up">
+                <div class="glit">
+                    <div id="wrapper">
+                        <h3 class="glitch" data-text="c0NtAcT">CONTACT</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="flex">
+                <div class=" fs" data-aos="flip-right">
+                    <p>𝙼𝚒𝚛 𝙵𝚊𝚢𝚎𝚔 𝙷𝚘𝚜𝚜𝚊𝚒𝚗<br><br>𝚏𝚊𝚢𝚎𝚔𝚑𝚘𝚜𝚜𝚊𝚒𝚗.𝟿𝟾@𝚐𝚖𝚊𝚒𝚕.𝚌𝚘𝚖 <br><br>+𝟾𝟾𝟶𝟷𝟾𝟽𝟺𝟼𝟶𝟼𝟶𝚇𝚇</p>
+                </div>
+                <div class=" fs" data-aos="flip-right">
+                    <p>𝙵𝚘𝚛 𝚖𝚘𝚛𝚎 𝚒𝚗𝚏𝚘</p>
+                    <P>
+                        𝙵𝚊𝚌𝚎𝚋𝚘𝚘𝚔 :<br>
+                        <a style="color: rgb(245, 116, 116);" href="https://www.facebook.com/fayek.hossain.5/">
+                            𝙵𝚊𝚢𝚎𝚔 𝙷𝚘𝚜𝚜𝚊𝚒𝚗<br>
+                        </a> 𝙸𝚗𝚜𝚝𝚊𝚐𝚛𝚊𝚖 :
+                        <br>
+                        <a style="color: rgb(245, 116, 116);" href="https://www.instagram.com/im.not.faek/">
+                            𝚒𝚖.𝚗𝚘𝚝.𝚏𝚊𝚎𝚔
+                        </a>
+                    </p>
+                </div>
+            </div data-aos="slide-up">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11881.128906840073!2d90.3676011645082!3d23.822766283798302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sbd!4v1601970204327!5m2!1sen!2sbd" width="100%" height="250" frameborder="0"
+                style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+    </div>
+    <script>
+        AOS.init({
+            duration: 1200,
+        })
+    </script>
+    <script>
+        function onReady(callback) {
+            var intervalId = window.setInterval(function() {
+                if (document.getElementsByTagName('body')[0] !== undefined) {
+                    window.clearInterval(intervalId);
+                    callback.call(this);
+                }
+            }, 1000);
+        }
+
+        function setVisible(selector, visible) {
+            document.querySelector(selector).style.display = visible ? 'block' : 'none';
+        }
+
+        setTimeout(function() {
+            onReady(function() {
+                setVisible('body', true);
+                setVisible('.loader-wrapper', false);
+            });
+        }, 5000);
+        var elem = document.documentElement;
+
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { /* Firefox */
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                elem.msRequestFullscreen();
+            }
+        }
+
+        function ShowDiv() {
+            document.getElementById("myBtn").innerHTML = "Scroll down";
+            document.getElementById("myBtn").style.width = "120px";
+            document.getElementById("hid").style.display = "inline";
+        }
+        var btn = document.getElementById("myBtn");
+        btn.addEventListener("click", openFullscreen);
+        btn.addEventListener("click", ShowDiv);
+    </script>
+</body>
+
+</html>

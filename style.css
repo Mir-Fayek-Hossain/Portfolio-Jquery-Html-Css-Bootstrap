@@ -1,0 +1,393 @@
+.gall {
+    box-sizing: border-box;
+}
+
+.row {
+    display: -ms-flexbox;
+    /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap;
+    /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+
+/* Create four equal columns that sits next to each other */
+
+.column {
+    -ms-flex: 19%;
+    /* IE10 */
+    flex: 19%;
+    max-width: 19%;
+    padding: 0 4px;
+}
+
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+}
+
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    padding: 0px 62px 0px 62px;
+    left: 0;
+    top: 0;
+    background-color: rgb(0, 0, 0, 0.85);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    width: 80%;
+    height: 100%;
+}
+
+.slide {
+    display: none;
+    text-align: center;
+}
+
+.image-slide {
+    border: 5px solid;
+    border-color: white;
+    padding: 10px 10px 10px 10px;
+}
+
+.slide img {
+    object-fit: contain;
+    width: 55%;
+    max-height: 650px;
+}
+
+.modal-preview {
+    width: 100%;
+}
+
+.dots {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+img.preview,
+img.modal-preview {
+    opacity: 1;
+}
+
+img.active {
+    opacity: 0.6;
+}
+
+.preview:hover,
+.modal-preview:hover {
+    opacity: 1;
+}
+
+img.hover-shadow {
+    transition: 0.3s;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 9px 20px 0 rgba(0, 0, 0, 1);
+}
+
+
+/* Content */
+
+.content {
+    border: 5px solid;
+    border-color: black;
+    background-color: rgb(255, 255, 255, 0.7);
+    padding: 10px;
+}
+
+.close {
+    color: white;
+    position: absolute;
+    top: 10%;
+    z-index: 3000;
+    right: 15%;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #999;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.previous,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 55%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0%;
+}
+
+.previous:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+img.hover-shadow {
+    transition: 0.3s;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.5), 0 9px 20px 0 rgba(0, 0, 0, 1);
+}
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:500);
+:root {
+    /* Base font size */
+    font-size: 10px;
+    /* Border color variable */
+    --border-color: #e70;
+}
+
+.artwork {
+    width: 90%;
+    margin-top: 50%;
+    position: relative;
+    line-height: 1.5;
+    text-align: center;
+    height: 90vh;
+    padding: 4rem 2rem;
+    color: #fafafa;
+    display: flex;
+    justify-content: space-around;
+}
+
+.artwork img {
+    width: 300px;
+    height: 300px;
+}
+
+.cube-container h1 {
+    font-size: 4rem;
+    margin-bottom: 20%;
+}
+
+.select-container h2 {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.select-container {
+    width: 50%;
+}
+
+.cube-container {
+    position: relative;
+    width: 30rem;
+    height: 30rem;
+    margin: 0 auto;
+    perspective: 100rem;
+}
+
+.cube {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.32, 0.05, 0.35, 1.6);
+}
+
+.cube-face-image {
+    display: block;
+    position: absolute;
+    /* opacity: 0.95; */
+    /* border: 0.2rem solid #fafafa; */
+    box-shadow: 0 0 0.5rem #fff, 0 0 1.5rem var(--border-color), 0 0 3rem var(--border-color);
+}
+
+.image-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 1.5rem;
+    justify-content: center;
+}
+
+.image-buttons input {
+    border: 0.2rem solid #fafafa;
+}
+
+.image-buttons input:focus {
+    outline: none;
+    border: 0.2rem solid var(--border-color);
+}
+
+
+/* Transform images to create cube */
+
+.image-1 {
+    transform: translateZ(15rem);
+}
+
+.image-2 {
+    transform: rotateX(-180deg) translateZ(15rem);
+}
+
+.image-3 {
+    transform: rotateY(90deg) translateZ(15rem);
+}
+
+.image-4 {
+    transform: rotateY(-90deg) translateZ(15rem);
+}
+
+.image-5 {
+    transform: rotateX(90deg) translateZ(15rem);
+}
+
+.image-6 {
+    transform: rotateX(-90deg) translateZ(15rem);
+}
+
+
+/* Transform cube to show correct image */
+
+.cube.initial-position {
+    transform: translateZ(-15rem) translateY(-2rem) rotateX(-15deg) rotateY(18deg) rotateZ(2deg);
+}
+
+.cube.show-image-1 {
+    transform: translateZ(-15rem);
+}
+
+.cube.show-image-2 {
+    transform: translateZ(-15rem) rotateX(180deg);
+}
+
+.cube.show-image-3 {
+    transform: translateZ(-15rem) rotateY(-90deg);
+}
+
+.cube.show-image-4 {
+    transform: translateZ(-15rem) rotateY(90deg);
+}
+
+.cube.show-image-5 {
+    transform: translateZ(-15rem) rotateX(-90deg);
+}
+
+.cube.show-image-6 {
+    transform: translateZ(-15rem) rotateX(90deg);
+}
+
+.initial-position img {
+    width: 300px;
+    height: 300px;
+}
+
+input {
+    width: 90px;
+    height: 90px;
+}
+
+@media only screen and (max-width: 1050px) {
+    .column {
+        -ms-flex: 18%;
+        /* IE10 */
+        flex: 18%;
+        max-width: 18%;
+    }
+    .modal {
+        height: 110%;
+        margin: -10%;
+    }
+    .slide img {
+        width: 75%;
+    }
+    .artwork {
+        margin-top: 140%;
+        margin-bottom: -70%;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .artwork {
+        margin-top: 130%;
+        display: block;
+    }
+    .select-container {
+        width: 100%;
+        display: grid;
+        place-items: center;
+        margin-top: 70%;
+    }
+    .cube-container {
+        width: 100%;
+    }
+    .select-container {
+        width: 97%;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        margin-top: 50%;
+    }
+    .cube-container {
+        width: 97%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .column {
+        -ms-flex: 17%;
+        /* IE10 */
+        flex: 17%;
+        max-width: 17%;
+    }
+    .modal {
+        height: 110%;
+        margin: -20%;
+    }
+    .slide img {
+        width: 95%;
+    }
+    .artwork {
+        margin-top: 190%;
+        display: block;
+        margin-bottom: 20%;
+    }
+    .select-container {
+        width: 100%;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        margin-top: 70%;
+    }
+    .cube-container {
+        width: 100%;
+    }
+}
